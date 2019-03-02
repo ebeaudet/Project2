@@ -1,0 +1,9 @@
+node_modules/
+.vscode
+.idea/
+.DS_Store
+~$*.pptx
+*.swp
+*.swo
+*.env
+Lesson-Plans/
