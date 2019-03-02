@@ -1,9 +1,4 @@
-node_modules/
-.vscode
-.idea/
 .DS_Store
-~$*.pptx
-*.swp
-*.swo
-*.env
-Lesson-Plans/
+node_modules
+npm-debug.log
+.env
