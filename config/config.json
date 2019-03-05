@@ -1,15 +1,15 @@
 {
   "development": {
     "username": "root",
-    "password": "Lion!1986",
-    "database": "playerdb",
+    "password": "MySQLP@ssw0rd",
+    "database": "player",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
-    "database": "testdb",
+    "password": "MySQLP@ssw0rd",
+    "database": "player",
     "host": "localhost",
     "dialect": "mysql",
     "logging": false
