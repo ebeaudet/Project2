@@ -34,7 +34,7 @@ function populateCats() {
 populateCats();
 // console.log(randomCategoryArray);
 
-// beginning of the query just needs a category code number added to the end to return a single random question from the opentdb API. This never changes. 
+// beginning of the query just needs a category code number added to the end to return a single random question from the opentdb API. This never changes.
 var queryStatic =
   "https://opentdb.com/api.php?amount=1&type=multiple&category=";
 // second part of the query is determined by the user's choice from one of the three random categories
@@ -52,33 +52,52 @@ function getQuestion() {
     } else {
       // If it isn't we, push it into the array in the else statement.
       previousQuestions.push(response.data.results[0].correct_answer);
-      // console.log(response.data.results);
-      // console.log(previousQuestions);
-    }
-    if ((chosenCat = 0)) {
-      // console.log(response.data.results);
-      questionCatOne.push(response.data.results[0]);
-    } else if ((chosenCat = 1)) {
-      // console.log(response.data.results);
-      questionCatTwo.push(response.data.results[0]);
-    } else if ((chosenCat = 2)) {
-      // console.log(response.data.results);
-      questionCatThree.push(response.data.results[0]);
+      if ((chosenCat = 0)) {
+        questionCatOne.push(response.data.results[0]);
+      } else if ((chosenCat = 1)) {
+        questionCatTwo.push(response.data.results[0]);
+      } else if ((chosenCat = 2)) {
+        questionCatThree.push(response.data.results[0]);
+      }
+      console.log("Question: " + questionCatTwo[0].question);
+      // console.log("Choices: " +questionCatTwo.results[0].correct_answer 
+          // " " +
+          // questionCatTwo.results[0].incorrect_answers[0] +
+          // " " +
+          // questionCatTwo.results[0].incorrect_answers[1] +
+          // " " +
+          // questionCatTwo.results[0].incorrect_answers[2] +
+      // " "
     }
   });
 }
 
-// getQuestion();
-
 function questionPopulator() {
-  chosenCat = 1;
   getQuestion();
   getQuestion();
   getQuestion();
-  console.log("cat two: " + questionCatTwo);
 }
 
-questionPopulator();
+document.getElementById("buttonOne").onclick = function() {
+  questionPopulator();
+};
+
+var value = questionCatOne + questionCatTwo + questionCatThree;
+
+document.getElementById("buttonTwo").onclick = function() {
+  console.log(value);
+};
+
+// ("#buttonOne").on("click", function(event) {
+//   event.preventDefault();
+//   questionPopulator();
+//   };
+
+//   ("#buttonTwo").on("click", function(event) {
+//     event.preventDefault();
+//     questionPopulator();
+//     };
+
 // console.log("cat one: " + questionCatOne);
 // console.log("cat two: " + questionCatTwo);
 // console.log("cat three: " + questionCatThree);
@@ -96,8 +115,6 @@ questionPopulator();
 //   getQuestion();
 //   getQuestion();
 // }
-
-
 
 // console.log(questionCatOne + questionCatTwo + questionCatThree);
 
