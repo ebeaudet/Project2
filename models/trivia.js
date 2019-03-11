@@ -1,15 +1,13 @@
 var Sequelize = require("sequelize");
 
 module.exports = function (sequelize, DataTypes) {
-  var playerData = sequelize.define("players", {
-    playerName: Sequelize.STRING,
-    score: Sequelize.INTEGER,
-    round: Sequelize.INTEGER,
-    wins: Sequelize.INTEGER,
-    losses: Sequelize.INTEGER,
-    createdAt: Sequelize.STRING,
-    updatedAt: Sequelize.STRING
+  var Players = sequelize.define("Players", {
+    playerName: DataTypes.STRING,
+    score: DataTypes.INTEGER,
+    round: DataTypes.INTEGER,
+    wins: DataTypes.INTEGER,
+    losses: DataTypes.INTEGER
   });
 
-  return playerData;
+  return Players;
 };

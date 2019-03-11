@@ -14,8 +14,15 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/players",
+      url: "api/playersa",
       data: JSON.stringify(player)
+    });
+  },
+  saveThis: function(player) {
+    return $.ajax({
+      method: "PUT",
+      url: "/api/players",
+      data: player
     });
   },
   getPlayers: function() {
@@ -36,8 +43,9 @@ API.getPlayers();
 
 // refreshPlayers gets new examples from the db and repopulates the list
 var refreshPlayers = function() {
+  console.log("getting players");
   API.getPlayers().then(function(data) {
-
+    console.log(data);
     var $players = data.map(function(player) {
       console.log(player);
       var $row = $("<div>");
@@ -77,6 +85,9 @@ var playerFormSubmit = function(event) {
   API.savePlayer(newPlayer).then(function() {
     refreshPlayers();
   });
+  // API.saveThis(newPlayer).then(function() {
+  //   refreshPlayers();
+  // });
 
   $newPlayerName.val("");
 };
