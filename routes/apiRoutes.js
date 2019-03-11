@@ -27,11 +27,6 @@ module.exports = function(app) {
 
   // Create a new player
   app.post("/api/playersa", function(req, res) {
-    console.log("Req:");
-    console.log(req.body);
-
-    console.log(Array.isArray(req.body.createdAt));
-    console.log(typeof req.body.createdAt === 'object');
 
     db.Players.create({
       playerName: req.body.playerName,
