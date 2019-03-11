@@ -2,7 +2,7 @@ $(document).ready(function () {
 
   // var category = 12;
   // var difficulty = "easy";
-  var queryURL = "https://opentdb.com/api.php?amount=10";
+  
   var catQueryUrl = "https://opentdb.com/api_category.php"
   // var queryCat = "&category=" + category;
   // var queryDiff = "&difficulty=" + difficulty;
