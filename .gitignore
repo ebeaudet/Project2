@@ -2,3 +2,7 @@
 node_modules
 npm-debug.log
 .env
+config.json
+package.json
+game.html
+home.html
