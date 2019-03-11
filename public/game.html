@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Triviass</title>
@@ -9,20 +8,117 @@
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/styles/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Notable" rel="stylesheet">
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./assets/styles/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Notable" rel="stylesheet">
 </head>
 <body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mt-3">
+            <a class="navbar-brand" id="gameName" href="#">Smel.ly Trivia</a>
+        </nav>
+        <div class="row">
+            <div class="categories">
+                <div class="col-md-4 box catColOne">
+                    <span class="catBox" id="catOne"></span>
+                </div>
+                <div class="col-md-4 box catColTwo">
+                    <span class="catBox" id="catTwo"></span>
+                </div>
+                <div class="col-md-4 box catColThree">
+                    <span class="catBox" id="catThree"></span>
+                </div>
+                <div class="col-md-4 box catColFour">
+                    <span class="catBox" id ="catFour"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="easyQuestions">
+                <div class="col-md-4 box catColOne easy" id="c1q1">
+                    <span class="amt">$100</span>
+                </div>
+                <div class="col-md-4 box catColTwo easy" id="c2q1">
+                    <span class="amt">$100</span>
+                </div>
+                <div class="col-md-4 box catColThree easy" id="c3q1">
+                    <span class="amt">$100</span>
+                </div>
+                <div class="col-md-4 box catColFour easy" id="c4q1">
+                    <span class="amt">$100</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mediumQuestions">
+                <div class="col-md-4 box catColOne medium" id="c1q2">
+                    <span class="amt">$200</span>
+                </div>
+                <div class="col-md-4 box catColTwo medium" id="c2q2">
+                    <span class="amt">$200</span>
+                </div>
+                <div class="col-md-4 box catColThree medium" id="c3q2">
+                    <span class="amt">$200</span>
+                </div>
+                <div class="col-md-4 box catColFour medium" id="c4q2">
+                    <span class="amt">$200</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="hardQuestions">
+                <div class="col-md-4 box catColOne hard" id="c1q3">
+                    <span class="amt">$300</span>
+                </div>
+                <div class="col-md-4 box catColTwo hard" id="c2q3">
+                    <span class="amt">$300</span>
+                </div>
+                <div class="col-md-4 box catColThree hard" id="c3q3">
+                    <span class="amt">$300</span>
+                </div>
+                <div class="col-md-4 box catColFour hard" id="c4q3">
+                    <span class="amt">$300</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <p>Smel.ly Trivia</p>
-  <div class="container">
+    <!-- modals start here -->
 
-    Player Name: <input type="text" name="playerName" id="newPlayerName">
-    <button id="newPlayerButton">Create new player</button>
+    <div class="modal fade" id="bestMatch" tabindex="-1" role="dialog" aria-labelledby="best-match" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="meet-match">Meet your Match!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h3 id="match-text"></h3>
+                        <img class='img-fluid' scr="" alt ="no image available">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <div id="highScores"></div>
 
     <script src="./assets/js/index.js"></script>
   </div>
 
+    <script src="./assets/js/triviaquery.js"></script>
+    <script src="./assets/js/triviaClick.js"></script>
+    
+    <footer class="text-center">
+        <a href="/api/home">home page</a> | <a href="">Github Repo</a>
+    </footer>
 </body>
+</html>
