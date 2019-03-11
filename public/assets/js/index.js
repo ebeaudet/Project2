@@ -14,7 +14,7 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/playersa",
+      url: "api/players",
       data: JSON.stringify(player)
     });
   },
