@@ -1,103 +1,81 @@
-$(document).ready(function () {
-
-  // var category = 12;
-  // var difficulty = "easy";
-  
-  var catQueryUrl = "https://opentdb.com/api_category.php"
-  // var queryCat = "&category=" + category;
-  // var queryDiff = "&difficulty=" + difficulty;
-  // var multi = "&type=multiple"
-
+$(document).ready(function() {
+  // first we ping our API for all of its available categories
+  var catQueryUrl = "https://opentdb.com/api_category.php";
   $.ajax({
     url: catQueryUrl,
     method: "GET"
   })
-    // After data comes back from the request
-    .then(function (response) {
-     // console.log(catQueryUrl);
+    // after data comes back from the request
+    .then(function(response) {
+      // console.log(catQueryUrl);
 
-     // console.log(response);
-      // storing the data from the AJAX request in the results variable
+      // console.log(response);
+      // we store the data from the AJAX request in the results variable
       var results = response.trivia_categories;
-      //console.log(results);
-      var catbox = [];
+      // console.log(results);
+      // empty arrays for the category position, category string, and category ID
+      var catBox = [];
+      var catBoxString = [];
+      var catBoxCode = [];
 
-
-      // if (randomCat.indexOf(catbox[randomCat - 1]) > -1) {
-      //       randomCategory();
-      // Looping through each result item
-      for (var i = 0; i < 4; i++) {
-
-        var randomCat = Math.floor(Math.random() * results.length);
-        //console.log("random cat " + randomCat);
-
-        var catId = results[i].id
-        //console.log("cat Id " + catId);
-
-        var catName = results[randomCat].name;
-        catbox.push(catName);
-        //console.log("cat name " + catName)
-
+      // randomCategory function picks a random category, and makes sure that it is not a repeat of previous a previous random category
+      function randomCategory() {
+        randomCat = Math.floor(
+          Math.random() * response.trivia_categories.length + 1
+        );
+        if (catBox.indexOf(randomCat) > -1) {
+          randomCategory();
+        }
       }
 
-      $("#catOne").append(catbox[0]);
-      $("#catTwo").append(catbox[1]);
-      $("#catThree").append(catbox[2]);
-      $("#catFour").append(catbox[3]);
+      // a for loop runs and populates eacj array with its respective data
+      for (var i = 0; i < 4; i++) {
+        randomCategory();
+        // console.log(randomCat);
+        catBox.push(randomCat);
+        catBoxCode.push(response.trivia_categories[randomCat - 1].id);
+        catBoxString.push(response.trivia_categories[randomCat - 1].name);
+      }
 
-    })
+      // we append the category strings to their appropriate dom elements
+      $("#catOne").append(catBoxString[0]);
+      $("#catTwo").append(catBoxString[1]);
+      $("#catThree").append(catBoxString[2]);
+      $("#catFour").append(catBoxString[3]);
 
+      // we declate an empty array for question URLS, then use a series of for loops to populate it using the category codes from earlier
+      var questionURLs = [];
+      function easyQs() {
+        for (i = 0; i < 4; i++) {
+          var easyURL =
+            "https://opentdb.com/api.php?amount=1&type=multiple&category=" +
+            catBoxCode[i] +
+            "&difficulty=easy";
+          questionURLs.push(easyURL);
+        }
+      }
+      function mediumQs() {
+        for (i = 0; i < 4; i++) {
+          var mediumURL =
+            "https://opentdb.com/api.php?amount=1&type=multiple&category=" +
+            catBoxCode[i] +
+            "&difficulty=medium";
+          questionURLs.push(mediumURL);
+        }
+      }
+      function hardQs() {
+        for (i = 0; i < 4; i++) {
+          var hardURL =
+            "https://opentdb.com/api.php?amount=1&type=multiple&category=" +
+            catBoxCode[i] +
+            "&difficulty=hard";
+          questionURLs.push(hardURL);
+        }
+      }
+      easyQs();
+      mediumQs();
+      hardQs();
 
-
-})
-
-
-
-
-// $(".catColOne").addClass("&category="+ catbox[0]);
-// $(".catColTwo").addClass("&category="+ catbox[1]);
-// $(".catColThree").addClass("&category="+ catbox[2]);
-// $(".catColFour").addClass("&category="+ catbox[3]);
-
-
-      //     $("#c1q1").addClass("&category=" + randomCategoryCodes[0]);
-//     $("#c1q1", "c1q2", "c1q3").data(
-//       "category",
-//       "&category=" + randomCategoryCodes[0]
-//     );
-//     $("#c2q1", "c2q2", "c2q3").data(
-//       "category",
-//       "&category=" + randomCategoryCodes[1]
-//     );
-//     $("#c3q1", "c3q2", "c3q3").data(
-//       "category",
-//       "&category=" + randomCategoryCodes[2]
-//     );
-//     $("#c1q4", "c1q4", "c1q4").data(
-//       "category",
-//       "&category=" + randomCategoryCodes[3]
-//     );
-//     console.log("c1q4 data right here" + $("#c1q4").data());
-//   }
-
-//   populateCats();
-
-//   // temporary defaults for category and difficulty
-//   var category = 12;
-//   var difficulty = "easy";
-//   var queryStart = "https://opentdb.com/api.php?amount=1&type=multiple";
-//   var queryCat = "&category=" + category;
-//   var queryDiff = "&difficulty=" + difficulty;
-
-//   // queryURL puts the two halves together
-//   var queryUrl = queryStart + queryCat + queryDiff;
-//   console.log(queryUrl);
-
-//   function getQuestion(queryCat, queryDiff) {
-//     $.get(queryStart + queryCat + queryDiff, function(data) {
-//       console.log("Posts", data);
-//     });
-//   }
-//   getQuestion(queryCat, queryDiff);
-//   getQuestion("&category=" + 14, "&difficulty=hard");
-// });
+      console.log(questionURLs);
+    });
+});

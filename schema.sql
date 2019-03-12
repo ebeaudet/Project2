@@ -1,4 +1,2 @@
 DROP DATABASE IF EXISTS playerdb;
 CREATE DATABASE playerdb;
-
-
