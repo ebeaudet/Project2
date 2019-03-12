@@ -14,12 +14,12 @@ $(document).ready(function () {
   })
     // After data comes back from the request
     .then(function (response) {
-      console.log(catQueryUrl);
+     // console.log(catQueryUrl);
 
-      console.log(response);
+     // console.log(response);
       // storing the data from the AJAX request in the results variable
       var results = response.trivia_categories;
-      console.log(results);
+      //console.log(results);
       var catbox = [];
 
 
@@ -29,14 +29,14 @@ $(document).ready(function () {
       for (var i = 0; i < 4; i++) {
 
         var randomCat = Math.floor(Math.random() * results.length);
-        console.log("random cat " + randomCat);
+        //console.log("random cat " + randomCat);
 
         var catId = results[i].id
-        console.log("cat Id " + catId);
+        //console.log("cat Id " + catId);
 
         var catName = results[randomCat].name;
         catbox.push(catName);
-        console.log("cat name " + catName)
+        //console.log("cat name " + catName)
 
       }
 
@@ -44,6 +44,7 @@ $(document).ready(function () {
       $("#catTwo").append(catbox[1]);
       $("#catThree").append(catbox[2]);
       $("#catFour").append(catbox[3]);
+
     })
 
 
