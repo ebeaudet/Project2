@@ -1,99 +1,106 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+console.log("index file loaded");
+
+// Page elements
+var $newPlayerName = $("#newPlayerName");
+var $newPlayerButton = $("#newPlayerButton");
+var $highscores = $("#highScores");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  savePlayer: function(player) {
+    console.log(JSON.stringify(player));
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
+      url: "api/players",
+      data: JSON.stringify(player)
     });
   },
-  getExamples: function() {
+  saveThis: function(player) {
     return $.ajax({
-      url: "api/examples",
+      method: "PUT",
+      url: "/api/players",
+      data: player
+    });
+  },
+  getPlayers: function() {
+    return $.ajax({
+      url: "api/players",
       type: "GET"
     });
   },
-  deleteExample: function(id) {
+  deletePlayer: function(id) {
     return $.ajax({
-      url: "api/examples/" + id,
+      url: "api/players/" + id,
       type: "DELETE"
     });
   }
 };
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+API.getPlayers();
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
+// refreshPlayers gets new examples from the db and repopulates the list
+var refreshPlayers = function() {
+  console.log("getting players");
+  API.getPlayers().then(function(data) {
+    console.log(data);
+    var $players = data.map(function(player) {
+      console.log(player);
+      var $row = $("<div>");
+      $row.addClass("player");
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+      $row.append("<p>" + player.playerName + " </p>");
+      $row.append("<p>Score: " + player.score + "</p>");
+      $row.append("<p>Wins: " + player.wins + "</p>");
+      $row.append("<p>Losses: " + player.losses + "</p>");
+      $row.append("<button onclick='handleDeleteBtnClick("+player.id+")'>x</button>");
 
-      $li.append($button);
-
-      return $li;
+      return $row;
     });
 
-    $exampleList.empty();
-    $exampleList.append($examples);
+    $highscores.empty();
+    $highscores.append($players);
   });
 };
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
+// Save the new player to the db and refresh the highscore
+var playerFormSubmit = function(event) {
+
+  console.log("Creating new player");
   event.preventDefault();
 
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
-  };
+  var newPlayer = {
+    playerName: $newPlayerName.val().trim(),
+    round: 0
+  }
 
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
+  if (!newPlayer.playerName) {
+    alert("You must enter a player name!");
     return;
   }
 
-  API.saveExample(example).then(function() {
-    refreshExamples();
+  console.log(newPlayer);
+  API.savePlayer(newPlayer).then(function() {
+    refreshPlayers();
   });
+  // API.saveThis(newPlayer).then(function() {
+  //   refreshPlayers();
+  // });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
+  $newPlayerName.val("");
 };
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
+// Remove a player from the highscore list and refresh the list
+var handleDeleteBtnClick = function(id) {
+  console.log("Deleting player");
 
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
+  API.deletePlayer(id).then(function() {
+    refreshPlayers();
   });
 };
 
 // Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+$newPlayerButton.on("click", playerFormSubmit);
+refreshPlayers();
