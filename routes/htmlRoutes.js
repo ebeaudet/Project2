@@ -11,6 +11,9 @@ app.get("/game", function(req, res) {
   res.sendFile(path.join(__dirname, "../public/game.html"));
 });
 
+app.get("/selection", function(req, res) {
+  res.sendFile(path.join(__dirname, "../public/playerSelection.html"));
+});
 
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "../public/home.html"));

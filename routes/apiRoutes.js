@@ -3,6 +3,7 @@ var db = require("../models");
 var desiredColumns = ['id', 'playerName', 'score', 'round', 'wins', 'losses']
 
 module.exports = function(app) {
+
   // Get all players
   app.get("/api/players", function(req, res) {
     db.Players.findAll({
@@ -14,7 +15,6 @@ module.exports = function(app) {
 
   // Get single player data
   app.get("/api/players/:id", function(req, res) {
-
     db.Players.findOne({
       attributes: desiredColumns,
       where: {
@@ -26,27 +26,23 @@ module.exports = function(app) {
   });
 
   // Create a new player
-  app.post("/api/playersa", function(req, res) {
-
-    db.Players.create({
-      playerName: req.body.playerName,
-      score: req.body.score,
-      round: req.body.round,
-      wins: req.body.wins,
-      losses: req.body.losses
-    }).then(function(dbPlayer) {
+  app.post("/api/players", function(req, res) {
+    db.Players.create(req.body).then(function(dbPlayer) {
       res.json(dbPlayer);
-    }).catch(function(err) {
-      res.json(err);
     });
   });
 
+  // Update a player
   app.put("/api/players", function(req, res) {
-    // console.log("Req:");
-    // console.log(req);
-    // db.Players.create(req.body).then(function(dbPlayer) {
-    //   res.json(dbPlayer);
-    // });
+    db.Players.update(
+      req.body,
+      {
+        where: {
+          id: req.body.id
+        }
+      }).then(function(dbPlayer) {
+      res.json(dbPlayer);
+    });
   });
 
   // Delete a player by id

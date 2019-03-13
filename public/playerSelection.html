@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Triviass</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <div class="jumbotron text-center">
+        <i class="fas fa-user-friends"></i>
+    <h1 class="display-4 text-center">Player Selection</h1>
+    <p class="lead text-center">Choose a player or create a new one!</p>
+    <!-- <p class="lead text-center">Go on. PLAY ME.</p> -->
+    <hr class="my-4 center-block">
+    <h3 id="numPlayersHeader">How many players?</h3>
+    <button class="numPlayersButton" onclick="numPlayersChosen(1)">1</button>
+    <button class="numPlayersButton" onclick="numPlayersChosen(2)">2</button>
+    <button class="numPlayersButton" onclick="numPlayersChosen(3)">3</button>
+    <button class="numPlayersButton" onclick="numPlayersChosen(4)">4</button>
+
+    <div id="highScores" style="display: none"></div>
+    <div id="currentPlayersArea"></div>
+    <br>
+    <div id="newPlayerArea" style="display: none">
+      <input style="width: 100px" type="text" id="newPlayerName">
+      <button id="newPlayerButton">New Player</button>
+    </div>
+    <a href="/game"><button id="startGame" type="button" style="display: none; margin: auto" class="btn btn-primary center-block">Start Game</button></a>
+  </div>
+
+  <div class="container text-center">
+      <a href="/api/questions">Questions API</a> | <a href="">Github Repo</a>
+  </div>
+  <script src="./assets/js/index.js"></script>
+</body>
+</html>
