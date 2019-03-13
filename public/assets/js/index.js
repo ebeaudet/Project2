@@ -183,6 +183,40 @@ var addScore = function(playerId, score) {
   });
 }
 
+var setWins = function(playerId, wins) {
+  console.log("Setting wins of "+playerId+" to "+wins);
+  var player = {
+    "id": playerId,
+    "wins": wins
+  }
+  API.updatePlayer(player);
+  refreshPlayers();
+}
+
+var addWin = function(playerId) {
+  API.getPlayer(playerId).then(function(player) {
+    var newWins = player.wins + 1;
+    setWins(playerId, newWins);
+  });
+}
+
+var setLosses = function(playerId, losses) {
+  console.log("Setting losses of "+playerId+" to "+losses);
+  var player = {
+    "id": playerId,
+    "losses": losses
+  }
+  API.updatePlayer(player);
+  refreshPlayers();
+}
+
+var addLoss = function(playerId) {
+  API.getPlayer(playerId).then(function(player) {
+    var newLosses = player.losses + 1;
+    setLosses(playerId, newLosses);
+  });
+}
+
 // Add event listeners to the submit and delete buttons
 $newPlayerButton.on("click", playerFormSubmit);
 refreshPlayers();
