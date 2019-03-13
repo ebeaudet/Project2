@@ -28,10 +28,11 @@ var API = {
       data: JSON.stringify(player)
     });
   },
-  saveThis: function(player) {
+  updatePlayer: function(player) {
+    console.log(JSON.stringify(player));
     return $.ajax({
-      method: "PUT",
-      url: "/api/players",
+      type: "PUT",
+      url: "api/players",
       data: player
     });
   },
@@ -41,15 +42,15 @@ var API = {
       type: "GET"
     });
   },
-  getPlayer: function(id) {
+  getPlayer: function(playerId) {
     return $.ajax({
-      url: "api/players/"+id,
+      url: "api/players/"+playerId,
       type: "GET"
     });
   },
-  deletePlayer: function(id) {
+  deletePlayer: function(playerId) {
     return $.ajax({
-      url: "api/players/" + id,
+      url: "api/players/" + playerId,
       type: "DELETE"
     });
   }
@@ -83,15 +84,15 @@ var refreshPlayers = function() {
 // Save the new player to the db and refresh the highscore
 var playerFormSubmit = function(event) {
 
-  console.log("Creating new player");
+  console.log("Creating new player: "+$newPlayerName.val().trim());
   event.preventDefault();
 
   var newPlayer = {
-    playerName: $newPlayerName.val().trim(),
-    score: 0,
-    round: 0,
-    wins: 0,
-    losses: 0
+    "playerName": $newPlayerName.val().trim(),
+    "score": 0,
+    "round": 0,
+    "wins": 0,
+    "losses": 0
   }
 
   if (!newPlayer.playerName) {
@@ -104,6 +105,7 @@ var playerFormSubmit = function(event) {
   });
 
   $newPlayerName.val("");
+  refreshPlayers();
 };
 
 // Remove a player from the highscore list and refresh the list
@@ -115,18 +117,18 @@ var handleDeleteBtnClick = function(id) {
   });
 };
 
+// Selecting number of players
 var numPlayersChosen = function(quantity) {
   console.log("Number of players chosen!");
   console.log(quantity);
   numPlayers = quantity;
-  //$highscores.style.display = 'block';
-  //$newPlayerButton.display = 'none';
   $highscores.css("display", "block");
   $newPlayerArea.css("display", "block");
   $numPlayersButtons.css("display", "none");
   $numPlayersHeader.css("display", "none");
 }
 
+// Selecting unique player
 var playerChosen = function(playerID) {
   $("#player"+playerID).css("display", "none");
   chosenPlayers++;
@@ -162,6 +164,23 @@ var playerChosen = function(playerID) {
     });
   }
   console.log(currentPlayers);
+}
+
+var setScore = function(playerID, score) {
+  console.log("Setting score of "+playerID+" to "+score);
+  var player = {
+    "id": playerID,
+    "score": score
+  }
+  API.updatePlayer(player);
+  refreshPlayers();
+}
+
+var addScore = function(playerId, score) {
+  API.getPlayer(playerId).then(function(player) {
+    var newScore = score + player.score;
+    setScore(playerId, newScore);
+  });
 }
 
 // Add event listeners to the submit and delete buttons
