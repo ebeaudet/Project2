@@ -96,14 +96,18 @@ var resetPlayers = function() {
       }
       API.updatePlayer(player);
     }
+    currentPlayersList();
   });
 }
 
 // Gets the current player list on the game page
 // currentPlayerIndex is 1 - 4
 var currentPlayersList = function() {
-  API.getPlayers().then(function(data) {
+  while ($playersInGame[0].firstChild) {
+    $playersInGame[0].removeChild($playersInGame[0].firstChild);
+  }
 
+  API.getPlayers().then(function(data) {
     //console.log(data);
     currentPlayers = [];
 
@@ -116,7 +120,6 @@ var currentPlayersList = function() {
     for (var i = 1; i < currentPlayers.length; i++){
       if (currentPlayers[i].round < currentPlayers[lowestRoundPlayer].round) {
         lowestRoundPlayer = i;
-        break;
       }
     }
     console.log(currentPlayers[lowestRoundPlayer].playerName + " is the current player");
@@ -128,6 +131,7 @@ var currentPlayersList = function() {
         lowestRoundPlayer = 0;
       }
     }
+    currentPlayers = sortedPlayers;
 
     for (var i = 0; i < sortedPlayers.length; i++) {
       var $row = $("<div>");
@@ -262,6 +266,14 @@ var setRound = function(playerID, round) {
   // refreshPlayers();
 }
 
+var addRound = function(playerID) {
+  API.getPlayer(playerID).then(function(player) {
+    var newRound = player.round + 1;
+    setRound(playerID, newRound);
+  });
+  return true;
+}
+
 var setScore = function(playerID, score) {
   console.log("Setting score of "+playerID+" to "+score);
   var player = {
@@ -313,7 +325,27 @@ var addLoss = function(playerId) {
   });
 }
 
+var answerQuestion = function(correct){
+  console.log("Answered question");
+  console.log(correct);
+  if (correct) {
+    addScore(currentPlayers[0].id,100);
+    addRound(currentPlayers[0].id);
+    // while(!addRound(currentPlayers[0].id)) {
+      currentPlayersList();
+    // };
+  } else {
+    addScore(currentPlayers[0].id, -50);
+    addRound(currentPlayers[0].id);
+    // while(!addRound(currentPlayers[0].id)) {
+      currentPlayersList();
+    // };
+  }
+}
+
 // Add event listeners to the submit and delete buttons
 $newPlayerButton.on("click", playerFormSubmit);
 refreshPlayers();
 currentPlayersList();
+//
+// module.exports.data = methods;
