@@ -270,6 +270,7 @@ var addRound = function(playerID) {
   API.getPlayer(playerID).then(function(player) {
     var newRound = player.round + 1;
     setRound(playerID, newRound);
+    currentPlayersList();
   });
   return true;
 }
@@ -332,13 +333,13 @@ var answerQuestion = function(correct){
     addScore(currentPlayers[0].id,100);
     addRound(currentPlayers[0].id);
     // while(!addRound(currentPlayers[0].id)) {
-      currentPlayersList();
+      // currentPlayersList();
     // };
   } else {
     addScore(currentPlayers[0].id, -50);
     addRound(currentPlayers[0].id);
     // while(!addRound(currentPlayers[0].id)) {
-      currentPlayersList();
+      // currentPlayersList();
     // };
   }
 }
