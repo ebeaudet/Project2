@@ -3,21 +3,49 @@
   font-size: 24pt;
  /* text-align: center; */
  }
- 
+
  .container{
   width: 980px;
   height: 100%;
   /* background-image: url("/public/assets/img/odschooltv.jpg"); */
   background-repeat: no-repeat;
  }
- 
+
+.playerList {
+   border-radius: 25px;
+   width: 200px;
+   height: 400px;
+   background: lightblue;
+   margin: 5px 5px 5px 5px;
+   overflow: auto;
+   float: left;
+   text-align: center;
+   color: white;
+   justify-content: center;
+  }
+ .gamer {
+   border: 1px solid black;
+   height: 100px;
+   margin-bottom:10px;
+ }
+ .gField {
+   height: 25px;
+   margin: 0;
+ }
+ #curPlayer {
+   background-color:green;
+   height: 25px;
+   margin: 0;
+   font-weight: bold;
+ }
+
  .row{
   width: 980%;
   height: 220px;
   margin-top: 5px;
   margin-bottom: 5px;
  }
- 
+
  .box {
   border-radius: 25px;
   width: 200px;
@@ -33,7 +61,6 @@
   color: white;
   justify-content: center;
  }
- 
 
 .catBox{
 display: block;
@@ -69,7 +96,7 @@ display: block;
   display: block;
   margin: 0 auto;
   margin-bottom: 10px;
-  
+
   }
 
 .questionDiv {

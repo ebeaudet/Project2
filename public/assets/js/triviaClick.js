@@ -51,5 +51,7 @@ $(document).on("click", ".box", function(e) {
     console.log("clicked");
     var url = e.target.dataset.url;
     pullQuestionsAPI(url);
-});
 
+    //      $(".box").hide();
+
+});
