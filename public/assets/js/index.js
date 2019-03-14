@@ -10,6 +10,9 @@ var $currentPlayersArea = $("#currentPlayersArea");
 
 var $startGame = $("#startGame");
 
+var $playersInGame = $("#playersInGame");
+var $playerList = $("#playerList");
+
 // Variables
 var numPlayers = 0;
 var chosenPlayers = 0;
@@ -81,6 +84,86 @@ var refreshPlayers = function() {
   });
 };
 
+// Reset all player's scores & round number to 0
+var resetPlayers = function() {
+  API.getPlayers().then(function(data) {
+    for (var i = 0; i < data.length; i++) {
+      console.log("Resetting round number & score of "+data[i].id);
+      var player = {
+        "id": data[i].id,
+        "round": 0,
+        "score": 0
+      }
+      API.updatePlayer(player);
+    }
+  });
+}
+
+// Gets the current player list on the game page
+// currentPlayerIndex is 1 - 4
+var currentPlayersList = function() {
+  API.getPlayers().then(function(data) {
+
+    //console.log(data);
+    currentPlayers = [];
+
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].round > 0) {
+        currentPlayers.push(data[i]);
+      }
+    }
+    var lowestRoundPlayer = 0;
+    for (var i = 1; i < currentPlayers.length; i++){
+      if (currentPlayers[i].round < currentPlayers[lowestRoundPlayer].round) {
+        lowestRoundPlayer = i;
+        break;
+      }
+    }
+    console.log(currentPlayers[lowestRoundPlayer].playerName + " is the current player");
+    var sortedPlayers = [];
+    while(sortedPlayers.length < currentPlayers.length) {
+      sortedPlayers.push(currentPlayers[lowestRoundPlayer]);
+      lowestRoundPlayer++;
+      if (lowestRoundPlayer >= currentPlayers.length) {
+        lowestRoundPlayer = 0;
+      }
+    }
+
+    for (var i = 0; i < sortedPlayers.length; i++) {
+      var $row = $("<div>");
+      $row.addClass("gamer");
+
+      if (i == 0) {
+        $row.append("<p id='curPlayer'>Current Player</p>");
+        $row.attr("style","background-color:seagreen; height:125px; margin-top:10px");
+      } else {
+        $row.attr("style","background-color:olive");
+      }
+      $row.append("<p style='font-weight:bold' class='gField'>" + sortedPlayers[i].playerName + " </p>");
+      $row.append("<p class='gField'>Score: " + sortedPlayers[i].score + "</p>");
+      $row.append("<p class='gField'>Wins: " + sortedPlayers[i].wins + "</p>");
+      $row.append("<p class='gField'>Losses: " + sortedPlayers[i].losses + "</p>");
+      $playersInGame.append($row);
+    }
+
+    switch(sortedPlayers.length) {
+      case 1:
+        $playerList.attr("style","height: 190px");
+        break;
+      case 2:
+        $playerList.attr("style","height: 300px");
+        break;
+      case 3:
+        $playerList.attr("style","height: 400px");
+        break;
+      case 4:
+        $playerList.attr("style","height: 520px");
+        break;
+    }
+    return sortedPlayers;
+  });
+}
+
 // Save the new player to the db and refresh the highscore
 var playerFormSubmit = function(event) {
 
@@ -133,6 +216,8 @@ var playerChosen = function(playerID) {
   $("#player"+playerID).css("display", "none");
   chosenPlayers++;
 
+  setRound(playerID, 1);
+
   API.getPlayer(playerID).then(function(player) {
     currentPlayers.push(player);
   });
@@ -153,6 +238,7 @@ var playerChosen = function(playerID) {
       $currentPlayersArea.append($row);
       $currentPlayersArea.append("<span style='font-weight: bold; font-size: 20px; padding: 3px'>VS</span>");
     }
+    // It was being annoying and forgetting the last player... this fixes that (in a messy way)
     API.getPlayer(playerID).then(function(player) {
       var $row = $("<span style='display: inline-block; padding: 5px; background: lightblue; border: 1px solid black'>");
       $row.append("<p style='font-weight: bold;'>Player "+chosenPlayers+"</p>");
@@ -164,6 +250,16 @@ var playerChosen = function(playerID) {
     });
   }
   console.log(currentPlayers);
+}
+
+var setRound = function(playerID, round) {
+  console.log("Setting round number of "+playerID+" to "+round);
+  var player = {
+    "id": playerID,
+    "round": round
+  }
+  API.updatePlayer(player);
+  // refreshPlayers();
 }
 
 var setScore = function(playerID, score) {
@@ -220,3 +316,4 @@ var addLoss = function(playerId) {
 // Add event listeners to the submit and delete buttons
 $newPlayerButton.on("click", playerFormSubmit);
 refreshPlayers();
+currentPlayersList();
