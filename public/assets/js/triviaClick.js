@@ -1,3 +1,5 @@
+// var index = require('./index.js');
+
 function pullQuestionsAPI(queryURL) {
 
   $.ajax({
@@ -25,10 +27,18 @@ function pullQuestionsAPI(queryURL) {
       //shuffle all answers order
       shuffle(allAnswers);
       for (var i = 0; i < allAnswers.length; i++) {
-        isCorrect = (allAnswers[i] === questionObj.correct_answer) ? "correct" : "incorrect"
-        html = `<div>
-                    <button class="btnAnswer btn-primary ${isCorrect}">${allAnswers[i]}</button>
-                </div>`
+        isCorrect = (allAnswers[i] === questionObj.correct_answer) ? "correct" : "incorrect";
+        console.log(isCorrect);
+
+        if (isCorrect === 'correct') {
+          html = `<div>
+                      <button onclick="answerQuestion(true)" class="btnAnswer btn-primary ${isCorrect}">${allAnswers[i]}</button>
+                  </div>`
+        } else {
+          html = `<div>
+                      <button onclick="answerQuestion(false)" class="btnAnswer btn-primary ${isCorrect}">${allAnswers[i]}</button>
+                  </div>`
+        }
         $(".answers").append(html);
       }
 
