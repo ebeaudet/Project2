@@ -15,7 +15,6 @@ function pullQuestionsAPI(queryURL, idOfBox) {
         var allAnswers = questionObj.incorrect_answers;
         allAnswers.push(questionObj.correct_answer);
       }
-      console.log(questionObj);
 
       $("#category").empty();
       $("#category").append(questionObj.category);
@@ -29,11 +28,26 @@ function pullQuestionsAPI(queryURL, idOfBox) {
       shuffle(allAnswers);
       for (var i = 0; i < allAnswers.length; i++) {
         isCorrect = (allAnswers[i] === questionObj.correct_answer) ? "correct" : "incorrect";
-        console.log(isCorrect);
+
+        var score = 0;
+        switch(idOfBox.substring(0,idOfBox.length-1)) {
+          case "easy":
+            score = 100;
+            break;
+          case "medium":
+            score = 200;
+            break;
+          case "hard":
+            score = 300;
+            break;
+        }
+
+        if (isCorrect === 'incorrect')
+          score = -score / 2;
 
         if (isCorrect === 'correct') {
           html = `<div>
-                      <button onclick="answerQuestion(true,`+idOfBox+`)" class="btnAnswer btn-primary ${isCorrect}">${allAnswers[i]}</button>
+                      <button onclick="answerQuestion(true,`+idOfBox+`,`+score+`)" class="btnAnswer btn-primary ${isCorrect}">${allAnswers[i]}</button>
                   </div>`
         } else {
           html = `<div>

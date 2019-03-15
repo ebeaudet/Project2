@@ -69,6 +69,7 @@ display: block;
  .amt {
    color: white;
    font-size: 24pt;
+  pointer-events: none;
  }
 
  .btnAnswer {
