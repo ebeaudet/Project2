@@ -1,0 +1,119 @@
+@import "compass/css3";
+@import "compass/css3/transform";
+@import url(https://fonts.googleapis.com/css?family=Bangers);
+
+
+.wrap {
+  padding: 5em 0.5em;
+  margin: 0 auto;
+
+}
+
+h1 {
+  text-align: center;
+  font-weight: normal;
+  color: rgb(68, 68, 238);
+  text-transform: uppercase;
+  font-size: 8em;
+  white-space: nowrap;
+  font-size: 12vw;
+  z-index: 1000;
+  font-family: 'Bangers', cursive;
+  text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.7);
+ 
+}
+
+h3 {
+  text-align: center;
+  font-weight: normal;
+  color: rgb(68, 68, 238);
+  text-transform: uppercase;
+  font-size: 3em;
+  white-space: nowrap;
+  font-size: 3vw;
+  z-index: 1000;
+  font-family: 'Bangers', cursive;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.7);
+ 
+}
+
+p {
+  text-align: center;
+  font-weight: normal;
+  color: rgb(68, 68, 238);
+  text-transform: uppercase;
+  font-size: 16pt;
+  white-space: nowrap;
+  font-size: 16pt;
+  z-index: 1000;
+  font-family: 'Bangers', cursive;
+  /* text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.7); */
+ 
+}
+
+@media screen and (max-width: 50em) {
+  h1 {
+    font-size: 20vw;
+   }
+}
+
+
+.btnPlayerNum {
+     text-align: center;
+}
+
+#highScores {
+  text-align: center;
+}
+
+#newPlayerArea {
+  text-align: center;
+}
+
+.numPlayersButton {
+  background-color: rgb(68, 68, 238);
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    border-radius: 6px;
+  }
+
+  #newPlayerButton {
+    background-color: rgb(68, 68, 238);
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 6px;
+  }
+
+  .player {
+    border-radius: 10px;
+    margin: 5px;
+  }
+
+  #currentPlayersArea {
+    text-align: center;
+  }
+
+  
+.modal-content {
+  background-color: rgb(61, 61, 139);
+}
+
+.modal-header{
+  color: white;
+}
+
+.modal-body {
+  color: rgb(68, 68, 238);
+}

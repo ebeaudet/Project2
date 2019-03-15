@@ -9,21 +9,22 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./assets/styles/homestyles.css">
+
 
 </head>
 <body>
-  <div class="jumbotron text-center">
-        <i class="fas fa-user-friends"></i>
-    <h1 class="display-4 text-center">Player Selection</h1>
+<div>
+    <span class="wrap align-items:center"><h1>Player Selection</h1>
     <p class="lead text-center">Choose a player or create a new one!</p>
     <!-- <p class="lead text-center">Go on. PLAY ME.</p> -->
-    <hr class="my-4 center-block">
     <h3 id="numPlayersHeader">How many players?</h3>
+    <div class="btnPlayerNum">
     <button class="numPlayersButton" onclick="numPlayersChosen(1)">1</button>
     <button class="numPlayersButton" onclick="numPlayersChosen(2)">2</button>
     <button class="numPlayersButton" onclick="numPlayersChosen(3)">3</button>
     <button class="numPlayersButton" onclick="numPlayersChosen(4)">4</button>
-
+  </div>
     <div id="highScores" style="display: none"></div>
     <div id="currentPlayersArea"></div>
     <br>
@@ -33,10 +34,23 @@
     </div>
     <a href="/game"><button id="startGame" type="button" style="display: none; margin: auto" class="btn btn-primary center-block">Start Game</button></a>
   </div>
-
+</span>
   <div class="container text-center">
       <a href="/api/questions">Questions API</a> | <a href="">Github Repo</a>
   </div>
   <script src="./assets/js/index.js"></script>
+
+  <script>
+      $(function () {
+
+        causeRepaintsOn = $("h1, h2, h3, p");
+
+        $(window).resize(function () {
+          causeRepaintsOn.css("z-index", 1);
+        });
+
+      });
+</script>
+
 </body>
 </html>
