@@ -17,6 +17,7 @@ var $playerList = $("#playerList");
 var numPlayers = 0;
 var chosenPlayers = 0;
 var currentPlayers = [];
+var gameState = 0;
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -339,6 +340,37 @@ var answerQuestion = function(correct, idOfBox, score){
   }
   $("#"+idOfBox.id).css('visibility','hidden');
   $("#questionModal").modal("hide");
+  gameState ++;
+  if (gameState === 12){gameOver()
+}}
+
+function gameOver(){
+  console.log("the game is over");
+  var topScore = -999999;
+  var winner = currentPlayers[0].playerName;
+  var winnerID = currentPlayers[0].id;
+  var loserIDs = [];
+  for (i = 0; i < currentPlayers.length; i++) {
+    console.log("player names: " + currentPlayers[i].playerName)
+    if(currentPlayers[i].score>topScore){
+      topScore = currentPlayers[i].score;
+      winner = currentPlayers[i].playerName;
+      winnerID = currentPlayers[i].id;
+    }
+  }
+  for (i = 0; i < currentPlayers.length; i++) {
+    if(currentPlayers[i].id !== winnerID){
+      loserIDs.push(currentPlayers[i].id);
+    }
+  }
+  for (i = 0; i < loserIDs.length; i++) {
+    console.log("Loser IDS:" + loserIDs[i]);
+     addLoss(loserIDs[i]);
+    }
+  console.log("winner ID:" + winnerID);
+  addWin(winnerID);
+  $("#gameOverModal").modal("show");
+  $(".winner").append(winner+"!");
 }
 
 // Add event listeners to the submit and delete buttons

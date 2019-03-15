@@ -45,7 +45,7 @@ function pullQuestionsAPI(queryURL, idOfBox) {
         }
 
         if (isCorrect === 'incorrect')
-          score = -score / 2;
+          score = -score;
 
         if (isCorrect === 'correct') {
           html = `<div>
@@ -53,7 +53,7 @@ function pullQuestionsAPI(queryURL, idOfBox) {
                   </div>`
         } else {
           html = `<div>
-                      <button onclick="answerQuestion(false,`+idOfBox+`)" class="btnAnswer btn-primary ${isCorrect}">${allAnswers[i]}</button>
+                      <button onclick="answerQuestion(false,`+idOfBox+` , `+score+`)" class="btnAnswer btn-primary ${isCorrect}">${allAnswers[i]}</button>
 
                   </div>`
         }
