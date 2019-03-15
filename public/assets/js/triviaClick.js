@@ -1,6 +1,8 @@
 // var index = require('./index.js');
 
-function pullQuestionsAPI(queryURL) {
+
+function pullQuestionsAPI(queryURL, idOfBox) {
+
 
   $.ajax({
     url: queryURL,
@@ -28,15 +30,31 @@ function pullQuestionsAPI(queryURL) {
       shuffle(allAnswers);
       for (var i = 0; i < allAnswers.length; i++) {
         isCorrect = (allAnswers[i] === questionObj.correct_answer) ? "correct" : "incorrect";
-        console.log(isCorrect);
+
+        var score = 0;
+        switch(idOfBox.substring(0,idOfBox.length-1)) {
+          case "easy":
+            score = 100;
+            break;
+          case "medium":
+            score = 200;
+            break;
+          case "hard":
+            score = 300;
+            break;
+        }
+
+        if (isCorrect === 'incorrect')
+          score = -score / 2;
 
         if (isCorrect === 'correct') {
           html = `<div>
-                      <button onclick="answerQuestion(true)" class="btnAnswer btn-primary ${isCorrect}">${allAnswers[i]}</button>
+                      <button onclick="answerQuestion(true,`+idOfBox+`,`+score+`)" class="btnAnswer btn-primary ${isCorrect}">${allAnswers[i]}</button>
                   </div>`
         } else {
           html = `<div>
-                      <button onclick="answerQuestion(false)" class="btnAnswer btn-primary ${isCorrect}">${allAnswers[i]}</button>
+                      <button onclick="answerQuestion(false,`+idOfBox+`)" class="btnAnswer btn-primary ${isCorrect}">${allAnswers[i]}</button>
+
                   </div>`
         }
         $(".answers").append(html);
@@ -59,8 +77,11 @@ function shuffle (array) {
 
 $(document).on("click", ".box", function(e) {
     console.log("clicked");
+    console.log(this.id);
+    console.log("^");
     var url = e.target.dataset.url;
-    pullQuestionsAPI(url);
+    // console.log(this);
+    pullQuestionsAPI(url,this.id);
 
     //      $(".box").hide();
 

@@ -9,7 +9,7 @@ $(document).ready(function () {
     .then(function (response) {
       // we store the data from the AJAX request in the results variable
       var results = response.trivia_categories;
-  
+
       // empty arrays for the category position, category string, and category ID
       var catBox = [];
       var catBoxString = [];
@@ -49,7 +49,7 @@ $(document).ready(function () {
             "https://opentdb.com/api.php?amount=1&type=multiple&category=" +
             catBoxCode[i] +
             "&difficulty=easy";
-          html = `  <div class="col-md-4 box catColOne easy" data-url=${easyURL}>
+          html = `  <div class="col-md-4 box catColOne easy" id="easy`+i+`" data-url=${easyURL}>
                         <span class="amt">$100</span>
                     </div>`
           $("#easyQuestions").append(html)
@@ -62,7 +62,7 @@ $(document).ready(function () {
             "https://opentdb.com/api.php?amount=1&type=multiple&category=" +
             catBoxCode[i] +
             "&difficulty=medium";
-          html = `<div class="col-md-4 box catColOne medium" data-url=${mediumURL}>
+          html = `<div class="col-md-4 box catColOne medium" id="medium`+i+`" data-url=${mediumURL}>
                       <span class="amt">$200</span>
                   </div>`
           $("#mediumQuestions").append(html)
@@ -74,7 +74,7 @@ $(document).ready(function () {
             "https://opentdb.com/api.php?amount=1&type=multiple&category=" +
             catBoxCode[i] +
             "&difficulty=hard";
-          html = `<div class="col-md-4 box catColOne hard" data-url=${hardURL}>
+          html = `<div class="col-md-4 box catColOne hard" id="hard`+i+`" data-url=${hardURL}>
                       <span class="amt">$300</span>
                   </div>`
           $("#hardQuestions").append(html)
