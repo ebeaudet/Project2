@@ -326,22 +326,19 @@ var addLoss = function(playerId) {
   });
 }
 
-var answerQuestion = function(correct){
+var answerQuestion = function(correct, idOfBox){
   console.log("Answered question");
-  console.log(correct);
+  console.log("Is Correct? "+correct);
   if (correct) {
     addScore(currentPlayers[0].id,100);
     addRound(currentPlayers[0].id);
-    // while(!addRound(currentPlayers[0].id)) {
-      // currentPlayersList();
-    // };
+
   } else {
     addScore(currentPlayers[0].id, -50);
     addRound(currentPlayers[0].id);
-    // while(!addRound(currentPlayers[0].id)) {
-      // currentPlayersList();
-    // };
   }
+  console.log(idOfBox.id);
+  $("#"+idOfBox.id).css('visibility','hidden');
 }
 
 // Add event listeners to the submit and delete buttons
