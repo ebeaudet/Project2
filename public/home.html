@@ -8,23 +8,34 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="./assets/styles/styles.css">
+  <link rel="stylesheet" type="text/css" href="./assets/styles/homestyles.css">
+
 
 </head>
 <body>
-  <div class="jumbotron text-center">
-        <i class="fas fa-user-friends"></i>
-    <h1 class="display-4 text-center">Triviass!</h1>
-    <p class="lead text-center">Try this super cool game.</p>
-    <p class="lead text-center">Go on. PLAY ME.</p>
+  <div class="wrap text-center">
+    <h1>SMEL Trivia!!!</h1> 
     <hr class="my-4 center-block">
-    <!-- <a href="/game"><button type="button" class="btn btn-primary center-block">Start Game</button></a> -->
-    <a href="/selection"><button type="button" class="btn btn-primary center-block">Start Game</button></a>
+      <a href="/selection"><button type="button" class="btn btn-primary center-block">Start Game</button></a>
   </div>
 
   <div class="container text-center">
       <a href="/api/questions">Questions API</a> | <a href="">Github Repo</a>
   </div>
+
+<script>
+            $(function () {
+
+              causeRepaintsOn = $("h1, h2, h3, p");
+
+              $(window).resize(function () {
+                causeRepaintsOn.css("z-index", 1);
+              });
+
+            });
+</script>
 
 </body>
 </html>

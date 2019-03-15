@@ -41,16 +41,16 @@
 
  .row{
   width: 980%;
-  height: 220px;
+  height: 160px;
   margin-top: 5px;
   margin-bottom: 5px;
  }
 
  .box {
   border-radius: 25px;
-  width: 200px;
-  height: 200px;
-  background: blueviolet;
+  width: 225px;
+  height: 150px;
+ background-color:  rgb(68, 68, 238);
   margin: 5px 5px 5px 5px;
   position: relative;
   overflow: auto;
@@ -60,10 +60,33 @@
   line-height: 90px;
   color: white;
   justify-content: center;
+  padding-top:20px;
  }
 
-.catBox{
-display: block;
+.catBoxTop {
+  border-radius: 25px;
+  width: 225px;
+  height: 150px;
+ background-color:  rgb(68, 68, 238);
+  margin: 5px 5px 5px 5px; 
+  line-height: 20px;
+  position: relative;
+  overflow: auto;
+  float: left;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  justify-content: center;
+  padding-top:50px;
+  
+}
+
+.catBox {
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  justify-content: center;
+  padding-top: 75px;
 }
 
  .amt {
@@ -109,9 +132,18 @@ display: block;
   margin-bottom: 20px;
 }
 
-.modal-content{
-  background-color: rgb(6, 12, 233);
 
+
+body {
+   background-color:rgb(185, 183, 183); 
+}
+
+button {
+  color: rgb(96, 96, 131);
+}
+
+.modal-content {
+  background-color: rgb(68, 68, 238);
 }
 
 .modal-header{

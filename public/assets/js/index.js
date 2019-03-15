@@ -74,8 +74,8 @@ var refreshPlayers = function() {
       $row.append("<p>Score: " + player.score + "</p>");
       $row.append("<p>Wins: " + player.wins + "</p>");
       $row.append("<p>Losses: " + player.losses + "</p>");
-      $row.append("<button style='background-color: lightgreen' onclick='playerChosen("+player.id+")'>Select</button>");
-      $row.append("<button style='background-color: darkred' onclick='handleDeleteBtnClick("+player.id+")'>Remove</button>");
+      $row.append("<button class='btn btn-success' onclick='playerChosen("+player.id+")'>Select</button>");
+      $row.append("<button class='btn btn-danger ml-2' onclick='handleDeleteBtnClick("+player.id+")'>Remove</button>");
 
       return $row;
     });
@@ -232,9 +232,8 @@ var playerChosen = function(playerID) {
     $highscores.css("display", "none");
     $startGame.css("display", "block");
     $newPlayerArea.css("display", "none");
-
     for (var i = 1; i <= currentPlayers.length; i++) {
-      var $row = $("<span style='display: inline-block; padding: 5px; background: lightblue; border: 1px solid black'>");
+      var $row = $("<span style='display: inline-block; padding: 5px; background: lightblue; border 1px solid black'>");
       $row.append("<p style='font-weight: bold;'>Player "+i+"</p>");
       $row.append("<p>" + currentPlayers[i-1].playerName + " </p>");
       $row.append("<p>Score: " + currentPlayers[i-1].score + "</p>");
