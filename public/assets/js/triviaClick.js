@@ -1,6 +1,8 @@
 // var index = require('./index.js');
 
+
 function pullQuestionsAPI(queryURL, idOfBox) {
+
 
   $.ajax({
     url: queryURL,
@@ -52,6 +54,7 @@ function pullQuestionsAPI(queryURL, idOfBox) {
         } else {
           html = `<div>
                       <button onclick="answerQuestion(false,`+idOfBox+`)" class="btnAnswer btn-primary ${isCorrect}">${allAnswers[i]}</button>
+
                   </div>`
         }
         $(".answers").append(html);

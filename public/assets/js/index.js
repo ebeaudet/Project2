@@ -326,6 +326,7 @@ var addLoss = function(playerId) {
   });
 }
 
+
 var answerQuestion = function(correct, idOfBox, score){
   console.log("Answered question");
   console.log("Is Correct? "+correct);
