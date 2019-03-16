@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "0Captain",
+    "password": "samSQL123!",
     "database": "playerdb",
     "host": "localhost",
     "dialect": "mysql"

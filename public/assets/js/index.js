@@ -272,6 +272,7 @@ var setRound = function(playerID, round) {
 }
 
 var addRound = function(playerID) {
+  console.log("adding round");
   API.getPlayer(playerID).then(function(player) {
     var newRound = player.round + 1;
     setRound(playerID, newRound);
@@ -378,7 +379,7 @@ function gameOver(){
   addWin(winnerID);
   $("#gameOverModal").modal("show");
   setTimeout(function(){sound4.play()}, 1300);
-  $(".winner").append(winner+"!");
+  $(".winner").append(winner+"with "+topScore+" points!");
   resetPlayers();
 }
 
