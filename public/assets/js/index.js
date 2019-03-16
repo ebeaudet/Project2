@@ -1,3 +1,7 @@
+var audioElementEndGame = document.createElement("audio");
+audioElementEndGame.setAttribute("src", "./assets/sounds/applause7.mp3")
+
+
 // Page elements
 var $newPlayerName = $("#newPlayerName");
 var $newPlayerButton = $("#newPlayerButton");
@@ -101,6 +105,7 @@ var resetPlayers = function() {
   });
 }
 
+
 // Gets the current player list on the game page
 // currentPlayerIndex is 1 - 4
 var currentPlayersList = function() {
@@ -189,11 +194,19 @@ var playerFormSubmit = function(event) {
   }
 
   API.savePlayer(newPlayer).then(function() {
-    refreshPlayers();
+
+    API.getPlayers().then(function(players) {
+      console.log(players);
+      console.log(players[players.length - 1]);
+      playerChosen(players[players.length-1].id);
+    });
+
   });
 
+  // playerChosen(newPlayer.id);
+
   $newPlayerName.val("");
-  refreshPlayers();
+  // refreshPlayers();
 };
 
 // Remove a player from the highscore list and refresh the list
@@ -267,6 +280,7 @@ var setRound = function(playerID, round) {
 }
 
 var addRound = function(playerID) {
+  console.log("adding round");
   API.getPlayer(playerID).then(function(player) {
     var newRound = player.round + 1;
     setRound(playerID, newRound);
@@ -331,10 +345,12 @@ var answerQuestion = function(correct, idOfBox, score){
   console.log("Answered question");
   console.log("Is Correct? "+correct);
   if (correct) {
+    sound3.play();
     addScore(currentPlayers[0].id, score);
     addRound(currentPlayers[0].id);
 
   } else {
+    sound2.play();
     addScore(currentPlayers[0].id, score);
     addRound(currentPlayers[0].id);
   }
@@ -370,7 +386,9 @@ function gameOver(){
   console.log("winner ID:" + winnerID);
   addWin(winnerID);
   $("#gameOverModal").modal("show");
-  $(".winner").append(winner+"!");
+  setTimeout(function(){sound4.play()}, 1300);
+  $(".winner").append(winner+" with "+topScore+" points!");
+  resetPlayers();
 }
 
 // Add event listeners to the submit and delete buttons
@@ -379,4 +397,3 @@ refreshPlayers();
 currentPlayersList();
 //
 // module.exports.data = methods;
-$("#gameOverModal").modal("show");
