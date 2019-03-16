@@ -19,11 +19,15 @@
 </head>
 
 <body>
+       
     <div class="container">
         <div>
             <h2>SMEL.ly Trivia!!!</h2>
         </div>
-
+        <div class="row short-row">
+        <img src="./assets/img/soundicon.png" id="soundIcon"><div>music</div>
+        <img src="./assets/img/soundicon.png" id="soundIcon2"><div>sound effects</div>
+            </div>
         <div class="row">
             <div class="categories">
                 <div class="col-md-4 box catBoxTop catColOne">
@@ -97,8 +101,8 @@
                     <div class="gameOverDiv">
 
                     </div>
-                    <div class="winner">
-                        And the winner is: 
+                    <div class=>
+                        <h5 class = "winner">And the winner is: </h4>
                     </div>
                     <div>
                     
@@ -112,10 +116,74 @@
             </div>
         </div>
     </div>
+    <script src="./assets/js/howler.js"></script>
+    <script>
+   
+    var sound = new Howl({
+    src: ['./assets/sounds/atmosphere.mp3'],
+    autoplay: true,
+    volume: 0.5
+        });
+    
+    var sound2 = new Howl({
+    src: ['./assets/sounds/wrongbuzz.mp3'],
+    autoplay: false,
+    volume: 0.3
+        });
+    
+    var sound3 = new Howl({
+    src: ['./assets/sounds/correct.mp3'],
+    autoplay: false,
+    volume: 0.5
+        });
 
+        var sound4 = new Howl({
+    src: ['./assets/sounds/airhorn.mp3'],
+    autoplay: false,
+    volume: 0.5
+        });
+        
+        
+    var soundEffects=true;
+    var id1 = sound.play();
+    // var id2 = sound2.play();
+    console.log(id1);
+
+    $("#soundIcon").click(function() {
+        if(sound.playing(id1)===false){
+            sound.play(id1);
+            $("#soundIcon").attr("src", "./assets/img/soundicon.png");
+        }
+        else {
+            $("#soundIcon").attr("src", "./assets/img/nosoundicon.png");
+            sound.pause(id1);
+        }
+    });
+
+    $("#soundIcon2").click(function() {
+        if(soundEffects){
+            sound2._volume = 0;
+            sound3._volume = 0;
+            sound4._volume = 0;
+            soundEffects=false;
+            $("#soundIcon2").attr("src", "./assets/img/nosoundicon.png");
+        }
+        else {
+            sound2._volume = 0.3;
+            sound3._volume = 0.5;
+            sound4._volume = 0.5;
+            soundEffects=true;
+            $("#soundIcon2").attr("src", "./assets/img/soundicon.png");
+        }
+    });
+
+
+    ;
+    </script> 
     <script src="./assets/js/index.js"></script>
     <script src="./assets/js/triviaClick.js"></script>
     <script src="./assets/js/triviaquery.js"></script>
+    
 
     <footer class="text-center">
         <a href="/api/home">home page</a> | <a href="">Github Repo</a>

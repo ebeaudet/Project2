@@ -336,10 +336,12 @@ var answerQuestion = function(correct, idOfBox, score){
   console.log("Answered question");
   console.log("Is Correct? "+correct);
   if (correct) {
+    sound3.play();
     addScore(currentPlayers[0].id, score);
     addRound(currentPlayers[0].id);
 
   } else {
+    sound2.play();
     addScore(currentPlayers[0].id, score);
     addRound(currentPlayers[0].id);
   }
@@ -375,7 +377,7 @@ function gameOver(){
   console.log("winner ID:" + winnerID);
   addWin(winnerID);
   $("#gameOverModal").modal("show");
-    audioElementEndGame.play();
+  setTimeout(function(){sound4.play()}, 1300);
   $(".winner").append(winner+"!");
   resetPlayers();
 }
