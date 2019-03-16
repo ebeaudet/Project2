@@ -1,3 +1,7 @@
+var audioElementEndGame = document.createElement("audio");
+audioElementEndGame.setAttribute("src", "./assets/sounds/applause7.mp3")
+
+
 // Page elements
 var $newPlayerName = $("#newPlayerName");
 var $newPlayerButton = $("#newPlayerButton");
@@ -371,6 +375,7 @@ function gameOver(){
   console.log("winner ID:" + winnerID);
   addWin(winnerID);
   $("#gameOverModal").modal("show");
+    audioElementEndGame.play();
   $(".winner").append(winner+"!");
   resetPlayers();
 }
