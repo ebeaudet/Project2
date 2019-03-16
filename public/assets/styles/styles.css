@@ -127,9 +127,6 @@
   margin-bottom: 20px;
 }
 
-body {
-   background-color:rgb(185, 183, 183); 
-}
 
 button {
   color: rgb(96, 96, 131);
@@ -141,4 +138,8 @@ button {
 
 .modal-header{
   color: white;
+}
+
+.modalInfo {
+  background-color:rgb(160, 160, 160); 
 }

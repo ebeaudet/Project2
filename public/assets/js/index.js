@@ -379,3 +379,4 @@ refreshPlayers();
 currentPlayersList();
 //
 // module.exports.data = methods;
+$("#gameOverModal").modal("show");
