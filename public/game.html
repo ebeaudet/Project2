@@ -19,7 +19,7 @@
 </head>
 
 <body>
-       
+
     <div class="container">
         <div>
             <h2>SMEL.ly Trivia!!!</h2>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-md-4 playerList" id="playerList">
                     <div id="playersInGame"></div>
-                    <button class="btn btn-danger" onclick="resetPlayers()">Reset Players</button>
+                    <button class="btn btn-danger" onclick="gameOver()">End Game</button>
                 </div>
             </div>
         </div>
@@ -105,9 +105,9 @@
                         <h5 class = "winner">And the winner is: </h4>
                     </div>
                     <div>
-                    
+
                     <h3><a class="playAgainLink" href="/">Play again?</a></h3>
-                    </div>  
+                    </div>
 
                 </div>
                 <div class="modal-footer">
@@ -118,19 +118,19 @@
     </div>
     <script src="./assets/js/howler.js"></script>
     <script>
-   
+
     var sound = new Howl({
     src: ['./assets/sounds/atmosphere.mp3'],
     autoplay: true,
     volume: 0.5
         });
-    
+
     var sound2 = new Howl({
     src: ['./assets/sounds/wrongbuzz.mp3'],
     autoplay: false,
     volume: 0.3
         });
-    
+
     var sound3 = new Howl({
     src: ['./assets/sounds/correct.mp3'],
     autoplay: false,
@@ -142,8 +142,8 @@
     autoplay: false,
     volume: 0.5
         });
-        
-        
+
+
     var soundEffects=true;
     var id1 = sound.play();
     // var id2 = sound2.play();
@@ -179,11 +179,11 @@
 
 
     ;
-    </script> 
+    </script>
     <script src="./assets/js/index.js"></script>
     <script src="./assets/js/triviaClick.js"></script>
     <script src="./assets/js/triviaquery.js"></script>
-    
+
 
     <footer class="text-center">
         <a href="/api/home">home page</a> | <a href="">Github Repo</a>
@@ -204,4 +204,3 @@
 </body>
 
 </html>
-

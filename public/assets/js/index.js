@@ -194,11 +194,19 @@ var playerFormSubmit = function(event) {
   }
 
   API.savePlayer(newPlayer).then(function() {
-    refreshPlayers();
+
+    API.getPlayers().then(function(players) {
+      console.log(players);
+      console.log(players[players.length - 1]);
+      playerChosen(players[players.length-1].id);
+    });
+
   });
 
+  // playerChosen(newPlayer.id);
+
   $newPlayerName.val("");
-  refreshPlayers();
+  // refreshPlayers();
 };
 
 // Remove a player from the highscore list and refresh the list
@@ -272,6 +280,7 @@ var setRound = function(playerID, round) {
 }
 
 var addRound = function(playerID) {
+  console.log("adding round");
   API.getPlayer(playerID).then(function(player) {
     var newRound = player.round + 1;
     setRound(playerID, newRound);
@@ -378,7 +387,7 @@ function gameOver(){
   addWin(winnerID);
   $("#gameOverModal").modal("show");
   setTimeout(function(){sound4.play()}, 1300);
-  $(".winner").append(winner+"!");
+  $(".winner").append(winner+" with "+topScore+" points!");
   resetPlayers();
 }
 
