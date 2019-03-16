@@ -101,6 +101,7 @@ var resetPlayers = function() {
   });
 }
 
+
 // Gets the current player list on the game page
 // currentPlayerIndex is 1 - 4
 var currentPlayersList = function() {
@@ -371,6 +372,7 @@ function gameOver(){
   addWin(winnerID);
   $("#gameOverModal").modal("show");
   $(".winner").append(winner+"!");
+  resetPlayers();
 }
 
 // Add event listeners to the submit and delete buttons
@@ -379,4 +381,3 @@ refreshPlayers();
 currentPlayersList();
 //
 // module.exports.data = methods;
-$("#gameOverModal").modal("show");
