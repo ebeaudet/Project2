@@ -143,3 +143,8 @@ button {
 .modalInfo {
   background-color:rgb(160, 160, 160); 
 }
+
+#soundIcon {
+  height: 22px;
+  width: 22px;
+}
