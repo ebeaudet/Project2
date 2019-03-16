@@ -1,9 +1,3 @@
-#gameName {
-  font-family: "Notable";
-  font-size: 24pt;
- /* text-align: center; */
- }
-
  .container{
   width: 980px;
   height: 100%;
@@ -27,29 +21,30 @@
    border: 1px solid black;
    height: 100px;
    margin-bottom:10px;
+   background-color: rgb(173, 104, 173);
  }
  .gField {
    height: 25px;
    margin: 0;
  }
  #curPlayer {
-   background-color:green;
+   background-color:rgb(146, 61, 146);
    height: 25px;
    margin: 0;
    font-weight: bold;
  }
 
  .row{
-  width: 980%;
-  height: 160px;
+  width: 1240px;
+  height: 135px;
   margin-top: 5px;
   margin-bottom: 5px;
  }
 
  .box {
   border-radius: 25px;
-  width: 225px;
-  height: 150px;
+  width: 175px;
+  height: 125px;
  background-color:  rgb(68, 68, 238);
   margin: 5px 5px 5px 5px;
   position: relative;
@@ -65,8 +60,8 @@
 
 .catBoxTop {
   border-radius: 25px;
-  width: 225px;
-  height: 150px;
+  width: 175px;
+  height: 125px;
  background-color:  rgb(68, 68, 238);
   margin: 5px 5px 5px 5px; 
   line-height: 20px;
@@ -131,8 +126,6 @@
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   margin-bottom: 20px;
 }
-
-
 
 body {
    background-color:rgb(185, 183, 183); 
