@@ -140,11 +140,11 @@ var currentPlayersList = function() {
 
       if (i == 0) {
         $row.append("<p id='curPlayer'>Current Player</p>");
-        $row.attr("style","background-color:seagreen; height:125px; margin-top:10px");
+        $row.attr("style","background-color:light purple; height:125px; margin-top:10px");
       } else {
-        $row.attr("style","background-color:olive");
+        $row.attr("style","background-color:gray");
       }
-      $row.append("<p style='font-weight:bold' class='gField'>" + sortedPlayers[i].playerName + " </p>");
+      $row.append("<p class='gField'>" + sortedPlayers[i].playerName + " </p>");
       $row.append("<p class='gField'>Score: " + sortedPlayers[i].score + "</p>");
       $row.append("<p class='gField'>Wins: " + sortedPlayers[i].wins + "</p>");
       $row.append("<p class='gField'>Losses: " + sortedPlayers[i].losses + "</p>");
@@ -379,3 +379,4 @@ refreshPlayers();
 currentPlayersList();
 //
 // module.exports.data = methods;
+$("#gameOverModal").modal("show");

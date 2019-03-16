@@ -14,14 +14,16 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./assets/styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="./assets/styles/homestyles.css">
     <link href="https://fonts.googleapis.com/css?family=Notable" rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light mt-3">
-            <a class="navbar-brand" id="gameName" href="#">Smel.ly Trivia</a>
-        </nav>
+        <div>
+            <h2>SMEL.ly Trivia!!!</h2>
+        </div>
+
         <div class="row">
             <div class="categories">
                 <div class="col-md-4 box catBoxTop catColOne">
@@ -37,8 +39,8 @@
                     <span class="catBox" id="catFour"></span>
                 </div>
                 <div class="col-md-4 playerList" id="playerList">
-                  <div id="playersInGame"></div>
-                  <button style="background-color: darkred" onclick="resetPlayers()">Reset Players</button>
+                    <div id="playersInGame"></div>
+                    <button class="btn btn-danger" onclick="resetPlayers()">Reset Players</button>
                 </div>
             </div>
         </div>
@@ -84,10 +86,10 @@
      <!-- game over modal starts here -->
      <div class="modal fade" id="gameOverModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
+            <div class="modal-content modalInfo">
                 <div class="modal-header">
                     <h5 class="modal-title"> Game Over!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -99,7 +101,8 @@
                         And the winner is: 
                     </div>
                     <div>
-                    <a href="/">Play again?</a> | 
+                    
+                    <h3><a class="playAgainLink" href="/">Play again?</a></h3>
                     </div>  
 
                 </div>
@@ -118,8 +121,19 @@
         <a href="/api/home">home page</a> | <a href="">Github Repo</a>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+
+            causeRepaintsOn = $("h1, h2, h3, p");
+
+            $(window).resize(function () {
+                causeRepaintsOn.css("z-index", 1);
+            });
+
+        });
+
+    </script>
 </body>
 
 </html>
+
